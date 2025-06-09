@@ -10,6 +10,16 @@ namespace malshinon
     {
         static void Main(string[] args)
         {
+            malshinon_DAL dal = new malshinon_DAL();
+            Person mm = new Person("jony", "mendelowitz");
+            Person kk = new Person("jonddy", "mendelowddddcitz");
+
+
+            dal.AddPeopleTable(kk);
+
+            Console.WriteLine(dal.SearchForPersonByFirstName("msdcm"));
+
+
 
         }
     }

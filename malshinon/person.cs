@@ -20,11 +20,10 @@ namespace malshinon
 
         public Person()
         { }
-        public Person(string firstname, string lastname,string secretcode)
+        public Person(string firstname, string lastname)
         {
             firstName = firstname;
             lastName = lastname;
-            secretCode = secretcode;
 
         }
     }

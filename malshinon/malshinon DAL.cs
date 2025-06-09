@@ -39,6 +39,7 @@ namespace malshinon
 			{
 				_conn.Close();
 				_conn = null;
+                Console.WriteLine( "disconnected");
 			}
 		}
 
@@ -56,7 +57,7 @@ namespace malshinon
 
 				try
 				{
-					openConnection();
+				openConnection();
 					cmd.ExecuteNonQuery();
 					Console.WriteLine($"the name {name.firstName} is inserted in the table");
 
@@ -66,13 +67,13 @@ namespace malshinon
 					Console.WriteLine($"Error while fetching: {ex.Message}");
 				}
 
-				closeConnection();
+				//closeConnection();
 		
 		}
 
 
 		//בודק האם האיש קיים לפי שם פרטי, מחזיר TRUE OR FALSE
-		public bool  SearchForPersonByFirstName(Person name)
+		public bool SearchForPersonByFirstName(Person name)
 		{
 
 			bool result = false;			
@@ -83,7 +84,7 @@ namespace malshinon
             cmd.Parameters.AddWithValue("@firstname", name.firstName);
 
 
-				openConnection();
+			openConnection();
             try
             {
 				reader =  cmd.ExecuteReader();
@@ -102,11 +103,45 @@ namespace malshinon
 		
 		}
 
+        public bool SearchForPersonByFirstName(string  name)
+        {
+
+            bool result = false;
+            MySqlCommand cmd = null;
+            string query = "SELECT first_name FROM `people` WHERE first_name = @firstname";
+            MySqlDataReader reader;
+            cmd = new MySqlCommand(query, _conn);
+            cmd.Parameters.AddWithValue("@firstname", name);
+
+
+			openConnection();
+            try
+            {
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error while fetching: {ex.Message}");
+            }
+
+            closeConnection();
+            return result;
+
+        }
 
 
 
 
-		public malshinon_DAL()
+
+
+
+
+
+        public malshinon_DAL()
 		{
 			try
 			{
