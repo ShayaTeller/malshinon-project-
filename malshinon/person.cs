@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace malshinon
 {
-    internal class People
+    internal class Person
     {
         public int id;
         public string firstName;
@@ -18,10 +18,17 @@ namespace malshinon
         public int num_mentions;
 
 
+        public Person()
+        { }
+        public Person(string firstname, string lastname,string secretcode)
+        {
+            firstName = firstname;
+            lastName = lastname;
+            secretCode = secretcode;
 
-
-
+        }
     }
 }
+
 
  //('reporter', 'target', 'bot')  
